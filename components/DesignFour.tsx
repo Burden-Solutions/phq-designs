@@ -123,7 +123,25 @@ export default function DesignFour() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap');
         .font-archivo { font-family: 'Archivo', sans-serif; }
+        :root {
+          --body-custom-width-container: 1470px;
+        }
+        .container {
+          max-width: var(--body-custom-width-container);
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        @media (min-width: 1025px) {
+          .container {
+            max-width: var(--body-custom-width-container);
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+        }
       `}</style>
+      <div className="container">
 
       {/* Announce */}
       <div className="bg-[#2b2b2b] px-16 py-2.5 flex justify-between items-center">
@@ -348,6 +366,7 @@ export default function DesignFour() {
           <p className="text-xs text-gray-400 tracking-[0.5px] text-right">No lock-in · Cancel anytime · Free shipping over $200</p>
         </div>
       </section>
+      </div>
     </div>
   );
 }
