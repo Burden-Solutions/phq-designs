@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Design 3 – Dark Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#FBA42A;--dark:#2b2b2b;--white:#fff;--off:#f7f6f3;--line:#e8e5e0}
+body{font-family:'Archivo',sans-serif;background:var(--white);color:var(--dark)}
+
+/* HERO */
+.hero{background:var(--dark);padding:96px 72px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-150px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(251,164,42,.1) 0%,transparent 65%);pointer-events:none}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(251,164,42,.1);border:1px solid rgba(251,164,42,.25);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:7px 16px;margin-bottom:32px}
+.hero__badge__dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+.hero__h1{font-size:clamp(64px,9vw,120px);font-weight:900;line-height:.85;color:var(--white);margin-bottom:16px;letter-spacing:-4px}
+.hero__h1 span{color:var(--gold)}
+.hero__h1 em{font-style:italic;-webkit-text-stroke:2px rgba(251,164,42,.6);color:transparent;display:block}
+.hero__sub{font-size:17px;line-height:1.8;color:rgba(255,255,255,.5);max-width:500px;margin:28px 0 48px}
+.hero__actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.btn-main{background:var(--gold);color:var(--dark);font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:17px 40px;text-decoration:none;display:inline-block;transition:all .2s;font-family:'Archivo',sans-serif}
+.btn-main:hover{background:#e8931a;transform:translateY(-2px);box-shadow:0 12px 32px rgba(251,164,42,.3)}
+.hero__ghost{font-size:13px;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:1px;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s}
+.hero__ghost:hover{color:var(--gold);border-color:var(--gold)}
+
+/* STATS */
+.stats{background:var(--white);display:grid;grid-template-columns:repeat(4,1fr);border-bottom:3px solid var(--gold)}
+.stat{padding:32px 36px;border-right:1px solid var(--line);transition:background .2s}
+.stat:last-child{border-right:none}
+.stat:hover{background:var(--off)}
+.stat__num{font-size:48px;font-weight:900;color:var(--gold);line-height:1;letter-spacing:-2px;margin-bottom:4px}
+.stat__label{font-size:12px;font-weight:600;letter-spacing:1px;color:#999;text-transform:uppercase}
+
+/* HOW */
+.how{padding:88px 72px;background:var(--off)}
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-title{font-size:clamp(40px,4.5vw,60px);font-weight:900;color:var(--dark);letter-spacing:-2px;margin-bottom:60px;line-height:.95}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+.step{background:var(--off);padding:48px 36px;position:relative;transition:background .2s}
+.step:hover{background:var(--white)}
+.step__num{font-size:88px;font-weight:900;color:rgba(251,164,42,.1);line-height:1;position:absolute;top:12px;right:16px;letter-spacing:-3px}
+.step__icon{width:52px;height:52px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:24px}
+.step__title{font-size:21px;font-weight:800;color:var(--dark);margin-bottom:12px}
+.step__desc{font-size:14px;line-height:1.75;color:#666}
+.step__chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.step__chip{background:var(--dark);color:var(--gold);font-size:11px;font-weight:600;padding:3px 10px;letter-spacing:.5px}
+
+/* PRODUCTS */
+.products{padding:88px 72px;background:var(--dark)}
+.products__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:52px}
+.prod-card{background:var(--dark);padding:36px;transition:background .2s;position:relative;overflow:hidden;cursor:pointer}
+.prod-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform .2s;transform-origin:bottom}
+.prod-card:hover::before{transform:scaleY(1)}
+.prod-card:hover{background:#222}
+.prod-card__icon{font-size:28px;margin-bottom:14px}
+.prod-card__name{font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px}
+.prod-card__desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:16px}
+.prod-card__freq{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);text-transform:uppercase;background:rgba(251,164,42,.1);padding:4px 10px;display:inline-block}
+
+/* FREQUENCY */
+.frequency{padding:88px 72px;background:var(--white)}
+.freq__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:52px;background:var(--line)}
+.freq-card{background:var(--white);padding:36px 28px;text-align:center;cursor:pointer;transition:all .2s;position:relative;border-bottom:3px solid transparent}
+.freq-card:hover,.freq-card.active{background:var(--dark);border-bottom-color:var(--gold)}
+.freq-card__period{font-size:30px;font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:8px;letter-spacing:-1px;transition:color .2s}
+.freq-card:hover .freq-card__period,.freq-card.active .freq-card__period{color:var(--white)}
+.freq-card__sub{font-size:11px;font-weight:600;color:#aaa;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+.freq-card:hover .freq-card__sub,.freq-card.active .freq-card__sub{color:rgba(255,255,255,.4)}
+.freq-card__tick{display:none;position:absolute;top:14px;right:16px;font-size:14px;color:var(--gold);font-weight:800}
+.freq-card.active .freq-card__tick{display:block}
+.freq-note{margin-top:20px;font-size:13px;color:#aaa;text-align:center}
+
+/* MANAGE */
+.manage{padding:88px 72px;background:var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.manage__title{font-size:clamp(44px,5vw,64px);font-weight:900;color:var(--dark);line-height:.9;letter-spacing:-2px;margin-bottom:24px}
+.manage__title span{font-style:italic}
+.manage__desc{font-size:15px;line-height:1.8;color:rgba(43,43,43,.65);margin-bottom:32px}
+.manage__items{display:flex;flex-direction:column;gap:12px}
+.manage__item{display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;color:var(--dark)}
+.manage__check{width:24px;height:24px;background:var(--dark);color:var(--gold);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.manage__ui{background:var(--white);padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.manage__ui__header{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.sub-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+.sub-row:last-child{border-bottom:none}
+.sub-row__left .name{font-size:13px;font-weight:700;color:var(--dark)}
+.sub-row__left .freq{font-size:11px;color:#aaa;margin-top:2px}
+.sub-row__saving{font-size:14px;font-weight:900;color:var(--gold)}
+
+/* FAQ */
+.faq{padding:88px 72px;background:var(--off)}
+.faq__inner{max-width:800px}
+.faq-item{background:var(--white);margin-bottom:3px}
+.faq-item summary{padding:20px 24px;font-size:15px;font-weight:700;color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;list-style:none;border-left:3px solid transparent;transition:border-color .2s}
+.faq-item[open] summary{border-left-color:var(--gold);color:var(--gold)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:22px;color:var(--gold);font-weight:400;flex-shrink:0}
+.faq-item[open] summary::after{content:'−'}
+.faq-item p{padding:0 24px 20px;font-size:14px;color:#666;line-height:1.8}
+
+/* CTA */
+.cta{padding:100px 72px;background:var(--dark);text-align:center;position:relative;overflow:hidden}
+.cta__bg-text{position:absolute;font-size:220px;font-weight:900;color:rgba(251,164,42,.03);left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;letter-spacing:-8px;pointer-events:none;font-style:italic}
+.cta__h2{font-size:clamp(56px,7vw,96px);font-weight:900;color:var(--white);line-height:.88;letter-spacing:-3px;margin-bottom:20px;position:relative}
+.cta__h2 em{font-style:italic;color:var(--gold)}
+.cta__sub{font-size:16px;color:rgba(255,255,255,.4);margin-bottom:48px;position:relative}
+.cta__btn{background:var(--gold);color:var(--dark);font-size:14px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:18px 48px;text-decoration:none;display:inline-block;transition:all .2s;position:relative;font-family:'Archivo',sans-serif}
+.cta__btn:hover{background:#e8931a;transform:translateY(-2px);box-shadow:0 12px 32px rgba(251,164,42,.3)}
+.cta__tagline{display:flex;justify-content:center;gap:36px;margin-top:36px;flex-wrap:wrap}
+.cta__tag{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:8px}
+.cta__tag::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%}
+
+@media(max-width:768px){
+.hero,.how,.products,.frequency,.manage,.faq,.cta{padding:56px 24px}
+.stats{grid-template-columns:1fr 1fr}
+.stat{padding:24px}
+.steps-grid,.products__grid,.freq__grid{grid-template-columns:1fr}
+.manage{grid-template-columns:1fr;gap:40px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero__badge"><span class="hero__badge__dot"></span>New — Auto-Replenish is Live</div>
+  <h1 class="hero__h1">Subscribe<br><span>&amp; Save</span><em>10% Off</em></h1>
+  <p class="hero__sub">Auto-replenish the plumbing essentials you use every week. Set it once — supplies arrive automatically, 10% cheaper, every time.</p>
+  <div class="hero__actions">
+    <a href="#" class="btn-main">Start Auto-Replenish →</a>
+    <a href="#" class="hero__ghost">See how it works</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat__num">10%</div><div class="stat__label">Off every delivery</div></div>
+  <div class="stat"><div class="stat__num">1×</div><div class="stat__label">Setup — auto after</div></div>
+  <div class="stat"><div class="stat__num">4</div><div class="stat__label">Schedule options</div></div>
+  <div class="stat"><div class="stat__num">0</div><div class="stat__label">Lock-in period</div></div>
+</div>
+
+<section class="how">
+  <p class="section-label">Simple Setup</p>
+  <h2 class="section-title">How It Works</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step__num">1</div>
+      <div class="step__icon">🔍</div>
+      <h3 class="step__title">Choose Product</h3>
+      <p class="step__desc">Select the consumables you use most. Add Auto-Replenish to as many products as you like.</p>
+      <div class="step__chips"><span class="step__chip">Thread Tape</span><span class="step__chip">Silicone</span><span class="step__chip">Flux</span></div>
+    </div>
+    <div class="step">
+      <div class="step__num">2</div>
+      <div class="step__icon">📅</div>
+      <h3 class="step__title">Set Schedule</h3>
+      <p class="step__desc">Pick how often you need each product delivered — every 2 weeks, monthly, or every few months. Adjust anytime from your account.</p>
+    </div>
+    <div class="step">
+      <div class="step__num">3</div>
+      <div class="step__icon">💰</div>
+      <h3 class="step__title">Save 10% Always</h3>
+      <p class="step__desc">Every Auto-Replenish order saves you 10% automatically. No codes. No manual steps. It just happens.</p>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <p class="section-label">Best Suited For</p>
+  <h2 class="section-title" style="color:var(--white)">Top Auto-Replenish Products</h2>
+  <div class="products__grid">
+    <div class="prod-card"><div class="prod-card__icon">🟡</div><div class="prod-card__name">Thread Tape</div><p class="prod-card__desc">Used on nearly every job — one of the most common plumbing consumables and ideal for scheduled delivery.</p><span class="prod-card__freq">Every 2–4 weeks</span></div>
+    <div class="prod-card"><div class="prod-card__icon">🔧</div><div class="prod-card__name">Silicone Sealants</div><p class="prod-card__desc">Applied on almost every job. Auto-Replenish ensures you always have cartridges on hand.</p><span class="prod-card__freq">Every 4 weeks</span></div>
+    <div class="prod-card"><div class="prod-card__icon">🪣</div><div class="prod-card__name">Pipe Sealant</div><p class="prod-card__desc">Jointing compounds used constantly across plumbing jobs — set and forget.</p><span class="prod-card__freq">Every 4–6 weeks</span></div>
+    <div class="prod-card"><div class="prod-card__icon">🔥</div><div class="prod-card__name">Flux &amp; Solder</div><p class="prod-card__desc">If you regularly solder copper pipework, these are perfect Auto-Replenish candidates.</p><span class="prod-card__freq">Every 4–8 weeks</span></div>
+    <div class="prod-card"><div class="prod-card__icon">🧹</div><div class="prod-card__name">Cleaning Wipes</div><p class="prod-card__desc">Used daily on site. Small, easy to forget, and ideal for automatic restocking.</p><span class="prod-card__freq">Every 2–4 weeks</span></div>
+    <div class="prod-card"><div class="prod-card__icon">🔩</div><div class="prod-card__name">Fixings &amp; Accessories</div><p class="prod-card__desc">Small components that are easy to run out of — auto-replenish keeps them topped up.</p><span class="prod-card__freq">Every 4–8 weeks</span></div>
+  </div>
+</section>
+
+<section class="frequency">
+  <p class="section-label">Your Schedule, Your Control</p>
+  <h2 class="section-title">Choose Your Frequency</h2>
+  <div class="freq__grid">
+    <div class="freq-card"><div class="freq-card__period">Every<br>2 Weeks</div><div class="freq-card__sub">High-use items</div><span class="freq-card__tick">✓</span></div>
+    <div class="freq-card active"><div class="freq-card__period">Every<br>4 Weeks</div><div class="freq-card__sub">Most popular</div><span class="freq-card__tick">✓</span></div>
+    <div class="freq-card"><div class="freq-card__period">Every<br>6 Weeks</div><div class="freq-card__sub">Moderate use</div><span class="freq-card__tick">✓</span></div>
+    <div class="freq-card"><div class="freq-card__period">2–3<br>Months</div><div class="freq-card__sub">Low-use items</div><span class="freq-card__tick">✓</span></div>
+  </div>
+  <p class="freq-note">Pause, skip, change or cancel anytime — no lock-in, no fees.</p>
+</section>
+
+<section class="manage">
+  <div>
+    <h2 class="manage__title">Flexible <span>Subscription</span> Management</h2>
+    <p class="manage__desc">Your schedule isn't locked in. Auto-Replenish gives you complete control over every delivery — change it, skip it, or cancel it whenever you need.</p>
+    <div class="manage__items">
+      <div class="manage__item"><span class="manage__check">✓</span>Pause a delivery</div>
+      <div class="manage__item"><span class="manage__check">✓</span>Skip a delivery</div>
+      <div class="manage__item"><span class="manage__check">✓</span>Change your delivery schedule</div>
+      <div class="manage__item"><span class="manage__check">✓</span>Add or remove products</div>
+      <div class="manage__item"><span class="manage__check">✓</span>Cancel anytime — no fees</div>
+    </div>
+  </div>
+  <div class="manage__ui">
+    <div class="manage__ui__header">Your Active Subscriptions</div>
+    <div class="sub-row"><div class="sub-row__left"><div class="name">Thread Tape × 5</div><div class="freq">Every 4 weeks</div></div><span class="sub-row__saving">−10%</span></div>
+    <div class="sub-row"><div class="sub-row__left"><div class="name">Silicone Sealant × 3</div><div class="freq">Every 4 weeks</div></div><span class="sub-row__saving">−10%</span></div>
+    <div class="sub-row"><div class="sub-row__left"><div class="name">Flux Paste × 2</div><div class="freq">Every 6 weeks</div></div><span class="sub-row__saving">−10%</span></div>
+    <div class="sub-row"><div class="sub-row__left"><div class="name">Cleaning Wipes × 10</div><div class="freq">Every 2 weeks</div></div><span class="sub-row__saving">−10%</span></div>
+  </div>
+</section>
+
+<section class="faq">
+  <p class="section-label">Questions Answered</p>
+  <h2 class="section-title" style="margin-bottom:40px">FAQ</h2>
+  <div class="faq__inner">
+    <details class="faq-item" open><summary>Do I always get the 10% discount?</summary><p>Yes. Every Auto-Replenish delivery automatically receives the 10% discount, no codes required.</p></details>
+    <details class="faq-item"><summary>Can I cancel my subscription?</summary><p>Yes — cancel anytime. No lock-in, no cancellation fees.</p></details>
+    <details class="faq-item"><summary>Can I change my delivery schedule?</summary><p>Yes. Adjust frequency, skip a delivery, or pause your subscription anytime from your account.</p></details>
+    <details class="faq-item"><summary>When will my payment be charged?</summary><p>Payment is processed automatically when each scheduled order is generated, prior to despatch.</p></details>
+    <details class="faq-item"><summary>Can I add more products later?</summary><p>Yes. Add additional Auto-Replenish products to your subscription whenever you like.</p></details>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta__bg-text">SAVE</div>
+  <h2 class="cta__h2">Start <em>Saving</em><br>10% Today</h2>
+  <p class="cta__sub">Browse the PlumbersHQ range and enable Auto-Replenish on the products you use most.</p>
+  <a href="#" class="cta__btn">Browse Auto-Replenish Products →</a>
+  <div class="cta__tagline">
+    <span class="cta__tag">Keep your ute stocked</span>
+    <span class="cta__tag">Keep your jobs moving</span>
+    <span class="cta__tag">Save 10% every time</span>
+  </div>
+</section>
+
+</body>
+</html>

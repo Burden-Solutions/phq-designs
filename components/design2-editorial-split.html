@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Design 2 – Editorial Split</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#FBA42A;--dark:#2b2b2b;--white:#fff;--off:#f7f6f3;--line:#e8e5e0}
+body{font-family:'Archivo',sans-serif;background:var(--white);color:var(--dark)}
+
+/* TOPBAR */
+.topbar{background:var(--dark);padding:11px 64px;display:flex;justify-content:space-between;align-items:center}
+.topbar__left{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.topbar__right{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+.hero__left{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line)}
+.hero__kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero__kicker::before{content:'';width:24px;height:2px;background:var(--gold)}
+.hero__h1{font-size:clamp(48px,5.5vw,80px);font-weight:900;line-height:.9;letter-spacing:-2px;color:var(--dark);margin-bottom:24px}
+.hero__h1 em{font-style:italic;color:var(--gold)}
+.hero__desc{font-size:16px;line-height:1.8;color:#666;max-width:380px;margin-bottom:40px}
+.hero__cta{display:inline-block;background:var(--gold);color:var(--dark);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:15px 32px;text-decoration:none;transition:all .2s}
+.hero__cta:hover{background:#e8931a;transform:translateY(-2px)}
+.hero__right{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:40px;background:var(--off)}
+.hero__stat{position:relative;padding-left:20px}
+.hero__stat::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;background:var(--gold)}
+.hero__stat__num{font-size:52px;font-weight:900;color:var(--dark);line-height:1;letter-spacing:-2px}
+.hero__stat__label{font-size:13px;color:#999;margin-top:4px}
+.hero__divider{height:1px;background:var(--line)}
+
+/* PAIN */
+.pain{background:var(--gold);padding:60px 64px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pain__quote{font-size:clamp(24px,3vw,36px);font-weight:900;color:var(--dark);line-height:1.1;letter-spacing:-.5px}
+.pain__quote em{font-style:italic}
+.pain__points{display:flex;flex-direction:column;gap:16px}
+.pain__point{display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;color:var(--dark)}
+.pain__point__dot{width:8px;height:8px;background:var(--dark);border-radius:50%;flex-shrink:0}
+
+/* STEPS */
+.steps{padding:80px 64px;background:var(--white)}
+.steps__header{margin-bottom:64px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;padding-bottom:32px;border-bottom:2px solid var(--dark)}
+.section-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-h2{font-size:clamp(36px,4vw,56px);font-weight:900;letter-spacing:-1.5px;line-height:.95}
+.steps__intro{font-size:15px;line-height:1.8;color:#666;align-self:end}
+.steps__list{display:flex;flex-direction:column}
+.step-row{display:grid;grid-template-columns:80px 1fr;gap:32px;padding:40px 0;border-bottom:1px solid var(--line);align-items:start}
+.step-row:last-child{border-bottom:none}
+.step-row__num{font-size:56px;font-weight:900;color:rgba(251,164,42,.2);line-height:1;letter-spacing:-2px;text-align:right}
+.step-row__title{font-size:22px;font-weight:800;color:var(--dark);margin-bottom:10px}
+.step-row__desc{font-size:14px;color:#666;line-height:1.75}
+.step-row__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.step-row__tag{background:var(--off);font-size:11px;font-weight:600;padding:4px 12px;color:var(--dark);letter-spacing:.5px;border:1px solid var(--line)}
+
+/* WHY */
+.why{padding:80px 64px;background:var(--dark)}
+.why__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:rgba(255,255,255,.06)}
+.why-card{background:var(--dark);padding:44px 36px;transition:background .2s}
+.why-card:hover{background:#222}
+.why-card__line{width:40px;height:3px;background:var(--gold);margin-bottom:24px}
+.why-card__title{font-size:20px;font-weight:800;color:var(--white);margin-bottom:12px}
+.why-card__desc{font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.75}
+
+/* TABLE SECTION */
+.table-section{padding:80px 64px;background:var(--white)}
+.prod-table{width:100%;border-collapse:collapse;margin-top:48px}
+.prod-table thead tr{background:var(--dark)}
+.prod-table th{padding:16px 20px;text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.prod-table td{padding:18px 20px;border-bottom:1px solid var(--line);font-size:14px}
+.prod-table tbody tr:hover td{background:var(--off)}
+.prod-table td strong{font-weight:700;color:var(--dark)}
+.badge{display:inline-block;background:rgba(251,164,42,.15);color:#9a6200;font-size:11px;font-weight:700;padding:3px 10px;letter-spacing:.5px}
+
+/* MANAGE */
+.manage{padding:80px 64px;background:var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.manage__title{font-size:clamp(40px,4.5vw,62px);font-weight:900;color:var(--dark);line-height:.9;letter-spacing:-2px;margin-bottom:24px}
+.manage__desc{font-size:15px;line-height:1.8;color:rgba(43,43,43,.65);margin-bottom:32px}
+.manage__list{display:flex;flex-direction:column;gap:10px}
+.manage__item{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;color:var(--dark)}
+.manage__item::before{content:'✓';width:22px;height:22px;background:var(--dark);color:var(--gold);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.manage__card{background:var(--dark);padding:32px}
+.manage__card__title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:24px}
+.sub-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.sub-row:last-child{border-bottom:none}
+.sub-row__name{font-size:13px;font-weight:600;color:var(--white)}
+.sub-row__freq{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.sub-row__save{font-size:13px;font-weight:800;color:var(--gold)}
+
+/* FAQ */
+.faq{padding:80px 64px;background:var(--white)}
+.faq__cols{display:grid;grid-template-columns:280px 1fr;gap:64px;margin-top:48px;align-items:start}
+.faq__intro p{font-size:14px;line-height:1.8;color:#666;margin-top:12px}
+.faq__link{display:inline-block;margin-top:20px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dark);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:2px}
+details{border-bottom:1px solid var(--line)}
+details summary{padding:19px 0;font-size:15px;font-weight:700;color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';font-size:22px;color:var(--gold);font-weight:400;flex-shrink:0}
+details[open] summary{color:var(--gold)}
+details[open] summary::after{content:'−'}
+details p{font-size:14px;line-height:1.75;color:#666;padding-bottom:18px}
+
+/* CTA */
+.cta{padding:100px 64px;background:var(--dark);text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;border:1px solid rgba(251,164,42,.07);pointer-events:none}
+.cta::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;border:1px solid rgba(251,164,42,.04);pointer-events:none}
+.cta__kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;position:relative}
+.cta__h2{font-size:clamp(52px,6.5vw,88px);font-weight:900;color:var(--white);line-height:.88;letter-spacing:-3px;margin-bottom:20px;position:relative}
+.cta__h2 em{font-style:italic;color:var(--gold)}
+.cta__sub{font-size:16px;color:rgba(255,255,255,.4);margin-bottom:44px;position:relative}
+.cta__btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative}
+.btn-gold{background:var(--gold);color:var(--dark);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:16px 40px;text-decoration:none;display:inline-block;transition:all .2s;font-family:'Archivo',sans-serif}
+.btn-gold:hover{background:#e8931a;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--white);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:16px 40px;text-decoration:none;display:inline-block;border:1px solid rgba(255,255,255,.15);transition:all .2s;font-family:'Archivo',sans-serif}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+@media(max-width:768px){
+.topbar{padding:10px 24px;flex-direction:column;gap:4px;text-align:center}
+.hero,.pain,.manage,.steps__header,.faq__cols{grid-template-columns:1fr}
+.hero__left,.hero__right{padding:48px 24px}
+.pain{padding:48px 24px;gap:36px}
+.steps,.why,.table-section,.manage,.faq,.cta{padding:50px 24px}
+.why__grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar__left">PlumbersHQ — Auto-Replenish</span>
+  <span class="topbar__right">Subscribe &amp; Save 10%</span>
+</div>
+
+<section class="hero">
+  <div class="hero__left">
+    <p class="hero__kicker">Auto-Replenish</p>
+    <h1 class="hero__h1">Subscribe<br>&amp; Save<br><em>10% Every<br>Time</em></h1>
+    <p class="hero__desc">Auto-replenish the plumbing essentials you use every week. Set your schedule once and the savings happen automatically — no codes, no effort.</p>
+    <a href="#" class="hero__cta">Start Saving Today →</a>
+  </div>
+  <div class="hero__right">
+    <div class="hero__stat"><div class="hero__stat__num">10%</div><div class="hero__stat__label">Off every Auto-Replenish delivery</div></div>
+    <div class="hero__divider"></div>
+    <div class="hero__stat"><div class="hero__stat__num">1×</div><div class="hero__stat__label">Setup — runs automatically after</div></div>
+    <div class="hero__divider"></div>
+    <div class="hero__stat"><div class="hero__stat__num">0</div><div class="hero__stat__label">Lock-in — cancel or pause anytime</div></div>
+  </div>
+</section>
+
+<section class="pain">
+  <p class="pain__quote">"Running out mid-job wastes time, delays work &amp; means <em>unnecessary trips</em> to the supplier."</p>
+  <div class="pain__points">
+    <div class="pain__point"><span class="pain__point__dot"></span>No reminders needed</div>
+    <div class="pain__point"><span class="pain__point__dot"></span>No last-minute supplier runs</div>
+    <div class="pain__point"><span class="pain__point__dot"></span>No holding up jobs over something small</div>
+    <div class="pain__point"><span class="pain__point__dot"></span>10% off automatically, every delivery</div>
+    <div class="pain__point"><span class="pain__point__dot"></span>Flexible schedule — your control</div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="steps__header">
+    <div>
+      <p class="section-kicker">Three Simple Steps</p>
+      <h2 class="section-h2">How Auto-Replenish Works</h2>
+    </div>
+    <p class="steps__intro">Most plumbers already buy the same consumables every few weeks. Auto-Replenish simply makes that process automatic — and cheaper.</p>
+  </div>
+  <div class="steps__list">
+    <div class="step-row">
+      <div class="step-row__num">01</div>
+      <div>
+        <h3 class="step-row__title">Choose Your Product</h3>
+        <p class="step-row__desc">Browse the PlumbersHQ range and select the products you use regularly. You can add Auto-Replenish to as many products as you like.</p>
+        <div class="step-row__tags"><span class="step-row__tag">Thread Tape</span><span class="step-row__tag">Silicone</span><span class="step-row__tag">Flux</span><span class="step-row__tag">Sealants</span><span class="step-row__tag">Fixings</span></div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-row__num">02</div>
+      <div>
+        <h3 class="step-row__title">Set Your Delivery Schedule</h3>
+        <p class="step-row__desc">Choose how often you'd like each product delivered — every 2 weeks, monthly, or every few months. Adjust your schedule anytime from your account.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-row__num">03</div>
+      <div>
+        <h3 class="step-row__title">Save 10% Automatically</h3>
+        <p class="step-row__desc">Every Auto-Replenish order automatically receives 10% off. No coupon codes. No manual discounts. The saving is built into every delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <p class="section-kicker">Why Plumbers Use It</p>
+  <h2 class="section-h2" style="color:var(--white)">Built for the Trade</h2>
+  <div class="why__grid">
+    <div class="why-card"><div class="why-card__line"></div><h3 class="why-card__title">Save on Every Delivery</h3><p class="why-card__desc">The more frequently you use a product, the more savings add up. Thread tape, silicone, sealants — always 10% less than the standard price.</p></div>
+    <div class="why-card"><div class="why-card__line"></div><h3 class="why-card__title">Never Run Out Mid-Job</h3><p class="why-card__desc">Supplies arrive before you run out. No last-minute supplier runs. No delays because something small is missing.</p></div>
+    <div class="why-card"><div class="why-card__line"></div><h3 class="why-card__title">Keep Your Ute Stocked</h3><p class="why-card__desc">Supplies arrive regularly so your ute stays stocked and ready for the next job — without any effort on your part.</p></div>
+  </div>
+</section>
+
+<section class="table-section">
+  <p class="section-kicker">What Works Best</p>
+  <h2 class="section-h2">Popular Auto-Replenish Products</h2>
+  <table class="prod-table">
+    <thead><tr><th>Product</th><th>Category</th><th>Ideal Schedule</th><th>Popularity</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Thread Tape</strong></td><td>Consumables</td><td>Every 2–4 weeks</td><td><span class="badge">Most Popular</span></td></tr>
+      <tr><td><strong>Silicone Sealants</strong></td><td>Sealants</td><td>Every 4 weeks</td><td><span class="badge">Most Popular</span></td></tr>
+      <tr><td><strong>Pipe Sealant</strong></td><td>Sealants</td><td>Every 4–6 weeks</td><td><span class="badge">Popular</span></td></tr>
+      <tr><td><strong>Flux &amp; Solder</strong></td><td>Copper Work</td><td>Every 4–8 weeks</td><td><span class="badge">Popular</span></td></tr>
+      <tr><td><strong>Cleaning Wipes</strong></td><td>PPE &amp; Safety</td><td>Every 2–4 weeks</td><td><span class="badge">Popular</span></td></tr>
+      <tr><td><strong>Fixings &amp; Accessories</strong></td><td>Hardware</td><td>Every 4–8 weeks</td><td><span class="badge">Popular</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="manage">
+  <div>
+    <h2 class="manage__title">Flexible Subscription Management</h2>
+    <p class="manage__desc">Your schedule isn't locked in. Auto-Replenish gives you complete control over every delivery — change it, skip it, or cancel it whenever you need.</p>
+    <div class="manage__list">
+      <div class="manage__item">Pause a delivery</div>
+      <div class="manage__item">Skip a delivery</div>
+      <div class="manage__item">Change your delivery schedule</div>
+      <div class="manage__item">Add or remove products</div>
+      <div class="manage__item">Cancel anytime — no fees</div>
+    </div>
+  </div>
+  <div class="manage__card">
+    <div class="manage__card__title">Your Active Subscriptions</div>
+    <div class="sub-row"><div><div class="sub-row__name">Thread Tape × 5</div><div class="sub-row__freq">Every 4 weeks</div></div><span class="sub-row__save">−10%</span></div>
+    <div class="sub-row"><div><div class="sub-row__name">Silicone Sealant × 3</div><div class="sub-row__freq">Every 4 weeks</div></div><span class="sub-row__save">−10%</span></div>
+    <div class="sub-row"><div><div class="sub-row__name">Flux Paste × 2</div><div class="sub-row__freq">Every 6 weeks</div></div><span class="sub-row__save">−10%</span></div>
+    <div class="sub-row"><div><div class="sub-row__name">Cleaning Wipes × 10</div><div class="sub-row__freq">Every 2 weeks</div></div><span class="sub-row__save">−10%</span></div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="faq__cols">
+    <div class="faq__intro">
+      <p class="section-kicker">Questions Answered</p>
+      <h2 class="section-h2" style="font-size:36px">Frequently Asked</h2>
+      <p>Everything you need to know about Auto-Replenish. Can't find your answer? Get in touch.</p>
+      <a href="#" class="faq__link">Contact PlumbersHQ →</a>
+    </div>
+    <div>
+      <details open><summary>Do I always get the 10% discount?</summary><p>Yes. Every Auto-Replenish delivery automatically receives the 10% discount — no codes required.</p></details>
+      <details><summary>Can I cancel my subscription?</summary><p>Yes — cancel anytime. No lock-in, no cancellation fees.</p></details>
+      <details><summary>Can I change my delivery schedule?</summary><p>Yes. Adjust frequency, skip a delivery, or pause your subscription anytime from your account.</p></details>
+      <details><summary>When will my payment be charged?</summary><p>Payment is processed automatically when each scheduled order is generated, prior to despatch.</p></details>
+      <details><summary>Can I add more products later?</summary><p>Yes. Add additional Auto-Replenish products whenever you like.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <p class="cta__kicker">Ready to get started?</p>
+  <h2 class="cta__h2">Start Saving<br><em>10% Today</em></h2>
+  <p class="cta__sub">Keep your ute stocked. Keep your jobs moving. Save 10% every time.</p>
+  <div class="cta__btns">
+    <a href="#" class="btn-gold">Browse Auto-Replenish Products</a>
+    <a href="#" class="btn-ghost">Learn More</a>
+  </div>
+</section>
+
+</body>
+</html>
