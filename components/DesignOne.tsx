@@ -130,22 +130,7 @@ export default function DesignOne() {
         :root {
           --body-custom-width-container: 1470px;
         }
-        .container {
-          max-width: var(--body-custom-width-container);
-          padding-left: 15px;
-          padding-right: 15px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        @media (min-width: 1025px) {
-          .container {
-            max-width: var(--body-custom-width-container);
-            padding-left: 15px;
-            padding-right: 15px;
-          }
-        }
       `}</style>
-      <div className="container">
 
       {/* Hero */}
       <section className="bg-white px-16 pt-20 grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch border-b-4 border-[#FBA42A]">
@@ -374,7 +359,6 @@ export default function DesignOne() {
           ))}
         </div>
       </section>
-      </div>
     </div>
   );
 }

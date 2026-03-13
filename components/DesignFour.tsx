@@ -141,7 +141,6 @@ export default function DesignFour() {
           }
         }
       `}</style>
-      <div className="container">
 
       {/* Announce */}
       <div className="bg-[#2b2b2b] px-16 py-2.5 flex justify-between items-center">
@@ -366,7 +365,6 @@ export default function DesignFour() {
           <p className="text-xs text-gray-400 tracking-[0.5px] text-right">No lock-in · Cancel anytime · Free shipping over $200</p>
         </div>
       </section>
-      </div>
     </div>
   );
 }

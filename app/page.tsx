@@ -7,6 +7,8 @@ import DesignThree from "@/components/DesignThree";
 import DesignFour from "@/components/DesignFour";
 const designs = [
   { id: 1, name: "Design One", component: DesignOne },
+  { id: 2, name: "Design Two", component: DesignTwo },
+  { id: 3, name: "Design Three", component: DesignThree },
   { id: 4, name: "Design Four", component: DesignFour },
 ];
 
